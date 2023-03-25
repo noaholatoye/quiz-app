@@ -91,4 +91,51 @@ const buildQuiz = () =>{
 }
 buildQuiz()
 
+
+const showResults = () =>{
+    // alert("hello")
+    // gather answer containers from our quiz
+    const answerContainers = quiz.querySelectorAll('.answers');
+
+    // keep track of the user's answer
+    let numCorrect = 0;
+
+    quizData.forEach((currentQuestion, questionNumber)=>{
+        // find selected answer
+        const answerContainer = answerContainers[questionNumber]
+        const selector = `input[name=question${questionNumber}]:checked`;
+        const userAnswer = (answerContainer.querySelector(selector) || {}).value
+
+        console.log('user: ', userAnswer);
+        console.log('correct', currentQuestion.correct);
+
+        // if answer is correct
+        if (userAnswer === currentQuestion.correct) {
+            numCorrect++
+            // color the answers green
+            answerContainers[questionNumber].style.color = "green" 
+        }
+        else{
+            answerContainers[questionNumber].style.color = "red"
+        }
+
+        // Show number of correct answers out of the total
+        // Display on the page:
+        // eg. You got __ out of __ questions correct.
+
+        /* Your code here */
+
+    })
+
+
+}
+
+submitButton.addEventListener("click", ()=>{
+    showResults()
+
+});
+
+
+
+
   
